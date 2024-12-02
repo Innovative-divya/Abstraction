@@ -1,25 +1,29 @@
 interface My{
-	void show();//by default pblic and abstract
+	default void show(){
+		System.out.println("my");
+	}
 }
-interface My1 extends My{
-	void display();
+interface My1{
+	default void show(){
+		System.out.println("M1");
+	}
 }
-interface My2 extends My,My1{
-	void xyz();
+class Myregister{
+	void register(My b){
+		b.show();
+	}
 }
 class Child implements My,My1{
-	private public void show(){
-		System.out.println("show");
-	}
-	public void display(){
-		System.out.println("display");
+	public void show(){
+		System.out.println("child");
 	}
 	public static void main(String... s){
+		Child c= new Child();
+		Myregister mr= new Myregister();
+		mr.register(c);
 		My m=new Child();
 		m.show();
-		My1 m1= new Child();
+		My1 m1=new Child();
 		m1.show();
-		m1.display();
 	}
 }
-		
